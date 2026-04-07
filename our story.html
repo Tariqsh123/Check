@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoNo-Cafe's | About Us</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<style>
+/* --- BASE STYLES --- */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body{
+    background: #0f0f0f;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* --- NAVBAR --- */
+nav{
+    height: 70px;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border: 2px solid white;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+nav h1{
+    color: white;
+    padding: 20px;
+    font-family: 'Playfair Display', serif;
+    cursor: context-menu;
+    font-size: 29px;
+}
+
+.menu{
+    height: 100%;
+    width: fit-content;
+    align-content: center;
+    gap:10px;
+}
+
+.menu a{
+    color: white;
+    padding: 10px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    transition: all 0.5s;
+    text-decoration: none;
+    padding:8px 15px;
+}
+
+.menu a:hover{
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+}
+
+.menu p{
+    display: none;
+}
+
+
+/* --- HERO / STORY SECTION --- */
+.about-hero{
+    padding:60px 6%;
+    background: linear-gradient(135deg,#1a1a1a,#0f0f0f);
+}
+
+.head-img{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+    background: rgba(255,255,255,0.03);
+    padding:40px;
+    border-radius:20px;
+    flex-wrap:wrap;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.head-sec{
+    flex:1;
+    min-width:280px;
+}
+
+.head-sec h1{
+    font-size:40px;
+    margin-bottom:20px;
+    cursor: context-menu;
+}
+
+.head-sec h1 span,
+.about-section h1 span{
+    background:transparent;
+    color:transparent;
+    -webkit-text-stroke: 1px white;
+    font-family: cursive;
+    font-style: italic;
+    padding: 5px 10px;
+    background-color: black;
+    border-radius: 20%;
+    box-shadow: 1px 1px 5px white;
+}
+
+.head-sec p{
+    font-size:18px;
+    color:#ccc;
+    line-height: 1.6;
+}
+
+.img-sec{
+    flex:1;
+    min-width:280px;
+    display:flex;
+    justify-content:center;
+}
+
+.img-sec img{
+    width:100%;
+    max-width:450px;
+    border-radius:15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* --- CARDS SECTION --- */
+.about-section{
+    padding:80px 6%;
+    background: linear-gradient(135deg,#0f0f0f,#1c1c1c);
+}
+
+.about-section h1{
+    cursor: context-menu;
+}
+
+.about-title{
+    text-align:center;
+    font-size:44px;
+    font-weight:700;
+    margin-bottom:70px;
+    letter-spacing:1px;
+}
+
+.about-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.about-card{
+    backdrop-filter: blur(12px);
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    color:#fff;
+    padding:25px;
+    border-radius:20px;
+    transition:0.4s ease;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    position:relative;
+    overflow:hidden;
+}
+
+.about-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.1),transparent);
+    opacity:0;
+    transition:0.5s;
+}
+
+.about-card:hover::before{
+    opacity:1;
+}
+
+.about-card:hover{
+    transform:translateY(-12px);
+    border-color:rgba(255,255,255,0.3);
+    background:rgba(255,255,255,0.08);
+}
+
+.about-card i{
+    font-size:35px;
+    margin-bottom:20px;
+    background:linear-gradient(45deg,#fff,#888);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.about-card h3{
+    margin-bottom:12px;
+    font-size:22px;
+}
+
+.about-card p{
+    font-size:15px;
+    line-height:1.6;
+    color:#bbb;
+}
+
+/* --- FOOTER STYLES --- */
+        .main-footer {
+            background-color: #000;
+            padding: 70px 6% 30px;
+            border-top: 2px solid white;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h2 span {
+            font-family: cursive;
+            -webkit-text-stroke: 1px white;
+            color: transparent;
+        }
+
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            width: 50%;
+            height: 2px;
+            background: white;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+
+        .footer-col p {
+            color: #aaa;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #aaa;
+            transition: 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+            padding-left: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: white;
+            transition: 0.4s;
+        }
+
+        .social-icons a:hover {
+            background: white;
+            color: black;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #777;
+        }
+
+        @media(max-width:768px){
+
+            .menu a{
+                display: none; 
+            }
+            .menu::after{
+                content: '\f0c9';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+            }
+            .about-title{
+                font-size:34px;
+            }
+            .head-sec h1{
+                font-size:32px;
+                text-align:center;
+            }
+            .head-sec p{
+                text-align:center;
+            }
+            .footer-col{
+                text-align: center;
+            }
+            .footer-col h3::after{
+                left: 25%; 
+            }
+            .social-icons{
+                justify-content: center;
+            }
+            
+        }
+
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h1>MoNo-Cafe's.</h1>
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<section class="about-hero">
+    <div class="head-img" data-aos="zoom-in">
+        <div class="head-sec">
+            <h1>Our <span>Cafe's</span> Story</h1>
+            <p>
+                At MoNo-Cafe, we don't just serve food; we create unforgettable taste experiences.
+                Every bite is crafted with passion, quality, and a touch of uniqueness. 
+                Started with a dream to redefine fast-food, we have grown into a sanctuary for food lovers.
+            </p>
+        </div>
+        <div class="img-sec">
+            <img src="MoNo-Cafe's.jfif" alt="MoNo Cafe Experience">
+        </div>
+    </div>
+</section>
+
+<section class="about-section">
+    <h1 class="about-title" data-aos="fade-down">Why <span>MoNo-Cafe's?</span></h1>
+
+    <div class="about-container">
+        <div class="about-card" data-aos="fade-up">
+            <i class="fa-solid fa-user"></i>
+            <h3>Who We Are</h3>
+            <p>MoNo-Cafe’s is a modern café where flavor meets comfort, creating a welcoming space for everyone.</p>
+        </div>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="50">
+            <i class="fa-solid fa-book-open"></i>
+            <h3>Our Story</h3>
+            <p>Started with a simple idea, bringing premium coffee and fast food together in one unique place.</p>
+        </div>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="100">
+            <i class="fa-solid fa-bullseye"></i>
+            <h3>Our Mission</h3>
+            <p>Deliver fresh, high-quality food that satisfies every craving and creates memorable experiences.</p>
+        </div>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="150">
+            <i class="fa-solid fa-eye"></i>
+            <h3>Our Vision</h3>
+            <p>To become a top destination for food lovers with quality, innovation, and excellent service.</p>
+        </div>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+            <i class="fa-solid fa-leaf"></i>
+            <h3>Quality Ingredients</h3>
+            <p>We use fresh and premium ingredients to ensure every bite is full of flavor.</p>
+        </div>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="250">
+            <i class="fa-solid fa-burger"></i>
+            <h3>Our Specialties</h3>
+            <p>From crispy fast food to signature coffee, crafted to satisfy every taste.</p>
+        </div>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="300">
+            <i class="fa-solid fa-smile"></i>
+            <h3>Customer Love</h3>
+            <p>Friendly service and a comfortable environment for every customer we serve.</p>
+        </div>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="350">
+            <i class="fa-solid fa-couch"></i>
+            <h3>The Ambience</h3>
+            <p>A cozy and modern space designed perfectly for relaxing and dining with friends.</p>
+        </div>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="400">
+            <i class="fa-solid fa-star"></i>
+            <h3>Excellence</h3>
+            <p>We stand out with taste, quality, and total dedication to customer satisfaction.</p>
+        </div>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="450">
+            <i class="fa-solid fa-handshake"></i>
+            <h3>Join Us</h3>
+            <p>Visit MoNo-Cafe’s and enjoy the perfect blend of premium food and artisanal coffee.</p>
+        </div>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="500">
+            <i class="fa-solid fa-lightbulb"></i>
+            <h3>Innovation</h3>
+            <p>We constantly experiment with new flavors and tech to upgrade your café experience.</p>
+        </div>
+        <div class="about-card" data-aos="fade-up" data-aos-delay="550">
+            <i class="fa-solid fa-users"></i>
+            <h3>Community</h3>
+            <p>More than a café, we aim to be a hub where the community connects over great food.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-col" data-aos="fade-up">
+            <h2><span>MoNo-Cafe's</span></h2>
+            <p>Authentic taste, premium quality, and a cozy atmosphere. We serve happiness in every plate and every cup.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="menu.html">Our Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+            <h3>Contact Us</h3>
+            <p><i class="fa-solid fa-location-dot" style="margin-right: 10px;"></i> Food Street, Phase 6, Karachi</p>
+            <p><i class="fa-solid fa-phone" style="margin-right: 10px; margin-top: 15px;"></i> +92 300 1234567</p>
+            <p><i class="fa-solid fa-envelope" style="margin-right: 10px; margin-top: 15px;"></i> info@monocafe.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; Powered by AsH Stud!0 (M-Umer) | MoNo-Cafe's | Crafted with <i class="fa-solid fa-heart" style="color: red;"></i> for Food Lovers!</p>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+    });
+</script>
+
+</body>
+</html>

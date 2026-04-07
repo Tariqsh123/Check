@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoNo-Cafe's Catering Contact</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<style>
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#0a0a0a,#1c1c1c);
+    color:#fff;
+}
+
+nav{
+        height: 70px;
+        width: 100%;
+        background-color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border: 2px solid white;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    nav h1{
+        color: white;
+        padding: 20px;
+        font-family: 'Playfair Display', serif;
+        cursor: context-menu;
+        font-size: 29px;
+    }
+
+    .menu{
+        height: 100%;
+        width: fit-content;
+        align-content: center;
+        gap:10px;
+    }
+
+    .menu a{
+        color: white;
+        padding: 10px 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        transition: all 0.5s;
+        text-decoration: none;
+        padding:8px 15px;
+    }
+
+    .menu a:hover{
+        background-color: white;
+        color: black;
+        border-radius: 10px;
+    }
+
+    .menu p{
+        display: none;
+    }
+
+.contact-section{
+    padding:80px 6%;
+}
+
+.contact-section h1{
+    cursor: context-menu;
+}
+
+.title{
+    text-align:center;
+    font-size:44px;
+    margin-bottom:60px;
+}
+
+.container{
+    display:grid;
+    grid-template-columns:
+    1fr 1fr;gap:40px;
+}
+
+.contact-info{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.info-box{
+    background:rgba(255,255,255,0.05);
+    padding:20px;
+    border-radius:15px;
+    backdrop-filter:blur(12px);
+    font-family: 'Playfair Display', serif;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    transition:0.3s;
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.info-box:hover{
+    transform:translateX(8px);
+    border-color:#fff;
+    box-shadow: 1px 1px 5px white;
+}
+.info-box i{
+    margin-right:10px;
+}
+
+.status{
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.open{
+    background:#0f5132;
+    color:#0f0;
+}
+
+.closed{
+    background:#5a0f0f;
+    color:#ff4d4d;
+}
+
+.form-box{
+    background:rgba(255,255,255,0.05);
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.form-box h3{
+    cursor: context-menu;
+}
+
+.form-box input,.form-box textarea{
+    width:100%;
+    margin:10px 0;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:rgba(255,255,255,0.08);
+    color:#fff;
+}
+
+.form-box button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(45deg,#fff,#bbb);
+    color:#000;
+    font-weight:bold;
+}
+
+::placeholder{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17PX;
+}
+
+.success{
+    display:none;
+    margin-top:10px;
+    padding:10px;
+    background:#0f5132;
+    border-radius:10px;
+    text-align:center;
+}
+
+.main-footer {
+            background-color: #000;
+            padding: 70px 6% 30px;
+            border-top: 2px solid white;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            cursor: context-menu;
+        }
+
+        .footer-col h2 span {
+            font-family: cursive;
+            -webkit-text-stroke: 1px white;
+            color: transparent;
+        }
+
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            cursor: context-menu;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            width: 50%;
+            height: 2px;
+            background: white;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+
+        .footer-col p {
+            color: #aaa;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #aaa;
+            transition: 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+            padding-left: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: white;
+            transition: 0.4s;
+        }
+
+        .social-icons a:hover {
+            background: white;
+            color: black;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #777;
+        }
+
+
+@media(max-width:900px){
+    .menu a{
+        display: none; 
+    }
+    .menu::after{
+        content: '\f0c9';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .container{
+        grid-template-columns:1fr;
+    }
+    .footer-col{
+        text-align: center;
+    }
+    .footer-col h3::after{
+        left: 25%; 
+    }
+    .social-icons{
+        justify-content: center;
+    }
+}
+
+.map-container iframe{
+    width:100%;
+    height:350px;
+    border:0;
+    filter:grayscale(100%) invert(90%);
+    transition:0.4s;
+}
+
+.map-container:hover iframe{
+    filter:grayscale(0%) invert(0%);
+}
+
+</style>
+
+
+</head>
+<body>
+
+    <nav>
+        <h1>MoNo-Cafe's<span>.</span></h1>
+        <div class="menu">
+            <a href="our story.html">Our Story</a>
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <p><i class="fa-solid fa-bars"></i></p>
+        </div>
+    </nav>
+
+
+    <section class="contact-section">
+        <h1 class="title">MoNo-Cafe's Catering Contact</h1>
+
+    <div class="container">
+
+        <div class="contact-info">
+
+            <div class="info-box" data-aos="fade-right">
+                <span><i class="fa-solid fa-location-dot"></i> Karachi, Pakistan</span>
+            </div>
+
+                <div class="info-box" data-aos="fade-right" data-aos-delay="100">
+                    <span><i class="fa-solid fa-phone"></i> +92 300 1234567</span>
+                </div>
+
+                <div class="info-box" data-aos="fade-right" data-aos-delay="200">
+                    <span><i class="fa-solid fa-envelope"></i> monocafe@email.com</span>
+                </div>
+
+                <div class="info-box" data-aos="fade-right" data-aos-delay="300">
+                    <span><i class="fa-solid fa-clock"></i> Weekdays: 10AM - 01PM</span>
+                </div>
+
+                <div class="info-box" data-aos="fade-right" data-aos-delay="400">
+                    <span><i class="fa-solid fa-clock"></i> Weekend: 12PM - 03AM</span>
+                </div>
+
+                <div class="info-box" data-aos="fade-right" data-aos-delay="500">
+                    <span><i class="fa-solid fa-signal"></i> Status</span>
+                    <span id="statusBadge" class="status"></span>
+                </div>
+
+    </div>
+
+    <div class="form-box" data-aos="fade-left">
+        <h3>Book Your Catering Event</h3>
+
+        <form id="contactForm">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <input type="text" placeholder="Event Type" required>
+            <input type="date" required>
+            <textarea rows="4" placeholder="Event Details"></textarea>
+                <button type="submit">Send Request</button>
+            <div class="success" id="successMsg">✅ Sent Successfully</div>
+        </form>
+    </div>
+
+</div>
+
+<div style="margin-top:60px;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);" data-aos="zoom-in">
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps?q=Karachi%20Pakistan&output=embed"></iframe>
+    </div>
+</div>
+
+</section>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-col" data-aos="fade-up">
+            <h2><span>MoNo-Cafe's</span></h2>
+            <p>Authentic taste, premium quality, and a cozy atmosphere. We serve happiness in every plate and every cup.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="menu.html">Our Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+            <h3>Contact Us</h3>
+            <p><i class="fa-solid fa-location-dot" style="margin-right: 10px;"></i> Food Street, Phase 6, Karachi</p>
+            <p><i class="fa-solid fa-phone" style="margin-right: 10px; margin-top: 15px;"></i> +92 300 1234567</p>
+            <p><i class="fa-solid fa-envelope" style="margin-right: 10px; margin-top: 15px;"></i> info@monocafe.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; Powered by AsH Stud!0 (M-Umer) | MoNo-Cafe's | Crafted with <i class="fa-solid fa-heart" style="color: red;"></i> for Food Lovers!</p>
+    </div>
+</footer>
+
+    <script>
+
+        AOS.init({duration:1000, once:true});
+
+            // Form
+        const form=document.getElementById('contactForm');
+        const success=document.getElementById('successMsg');
+        form.addEventListener('submit',e=>{e.preventDefault();success.style.display='block';form.reset();});
+
+        // Live Status Logic
+        const status=document.getElementById('statusBadge');
+        const now=new Date();
+        const hour=now.getHours();
+        const day=now.getDay();
+
+        let isOpen=false;
+
+    if(day>=1 && day<=5){ // Weekdays
+    if(hour>=10 && hour<22){isOpen=true;}
+    }
+
+    else{ // Weekend
+    if(hour>=12 && hour<24){isOpen=true;}
+    }
+
+    if(isOpen){
+        status.textContent="OPEN";
+        status.classList.add('open');
+    }
+
+    else{
+        status.textContent="CLOSED";
+        status.classList.add('closed');
+    }
+
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js">
+
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+    </script>
+
+</body>
+</html>

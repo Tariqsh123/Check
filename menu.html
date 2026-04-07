@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoNo-Cafe | Premium Fast Food Experience</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --accent: #fff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body{
+            font-family: 'Poppins', sans-serif; 
+            background: #050505; 
+            color: #fff; 
+            overflow-x: hidden; 
+        }
+
+        /* --- CUSTOM WHITE-BORDER NAVBAR --- */
+        nav{
+            height: 70px;
+            width: 100%;
+            background-color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid white; /* Your requested border */
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        nav h1{
+            color: white;
+            padding: 20px;
+            font-family: 'Playfair Display', serif;
+            cursor: context-menu;
+            font-size: 29px;
+        }
+
+        nav h1 span{
+            color: #888;
+        }
+
+        .menu{
+            height: 100%;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-right: 20px;
+        }
+
+        .menu a{
+            color: white;
+            padding: 8px 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            transition: all 0.5s;
+            text-decoration: none;
+        }
+
+        .menu a:hover{
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+        }
+
+        .menu p{
+            display: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding-left: 10px;
+        }
+
+            /* --- HERO SECTION FIXED --- */
+        .hero-sec{
+            height: 85vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.4), #050505), 
+            url('https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=1600');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative; /* Add this */
+            overflow: hidden;
+        }
+
+        .hero-sec h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 8vw, 90px);
+            line-height: 1;
+            position: relative;
+            z-index: 10;
+            backface-visibility: hidden; /* Fixes blur during rotation */
+            -webkit-font-smoothing: antialiased; /* Sharp text */
+            cursor: context-menu;
+        }
+
+        .hero-sec h1 span{
+            color: transparent;
+            -webkit-text-stroke: 1px #ffffff;
+        }
+
+        .hero-sec p{
+            font-size: 16px;
+            color: #888;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- MENU GRID --- */
+        .main-card{
+            padding: 80px 8%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            background: #050505;
+        }
+
+        .cards{
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            opacity: 0; 
+            transform: translateY(30px);
+        }
+
+        .cards:hover{
+            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-10px);
+            box-shadow: 1px 1px 5px white;
+            border-radius: 20px;
+        }
+
+        .img-container{
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+        }
+
+
+
+        .cards img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1s;
+
+        }
+
+        .cards:hover img{
+            transform: scale(1.1);
+        }
+
+        .cards-content{
+            padding: 20px;
+        }
+
+        .cards h2{
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .cards p{
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .price-tag{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 15px;
+        }
+
+        .price{
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .order-btn{
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: #888;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .order-btn:hover{
+            color: #fff;
+        }
+
+        .main-footer {
+            background-color: #000;
+            padding: 70px 6% 30px;
+            border-top: 2px solid white;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            cursor: context-menu;
+        }
+
+        .footer-col h2 span {
+            font-family: cursive;
+            -webkit-text-stroke: 1px white;
+            color: transparent;
+        }
+
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            cursor: context-menu;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            width: 50%;
+            height: 2px;
+            background: white;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+
+        .footer-col p {
+            color: #aaa;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #aaa;
+            transition: 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+            padding-left: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: white;
+            transition: 0.4s;
+        }
+
+        .social-icons a:hover {
+            background: white;
+            color: black;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Responsive Mobile */
+        @media(max-width: 768px){
+            .menu a{
+                display: none;
+            }
+            .menu p{
+                display: block;
+            }
+            nav h1{
+                font-size: 24px;
+            }
+            .main-card{
+                padding: 40px 5%;
+            }
+            .footer-col{
+                text-align: center;
+            }
+            .footer-col h3::after{
+                left: 25%;
+            }
+            .social-icons{
+                justify-content: center;
+            }
+
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>MoNo-Cafe's<span>.</span></h1>
+        <div class="menu">
+            <a href="our story.html">Our Story</a>
+            <a href="index.html">Home</a>
+            <a href="Contact.html">Contact</a>
+            <p><i class="fa-solid fa-bars"></i></p>
+        </div>
+    </nav>
+
+    <section class="hero-sec">
+        <p data-aos="fade-up">Est. 2024</p>
+        <h1 id="heroTitle">THE <span>FLAVOR</span> STORY</h1>
+    </section>
+
+    <section class="main-card">
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Classic Zinger</h2>
+                <p>Signature crispy chicken thigh, iceberg lettuce, and spicy mayo on a toasted bun.</p>
+                <div class="price-tag"><span class="price">Rs. 650</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Pepperoni Feast</h2>
+                <p>Hand-stretched dough topped with premium beef pepperoni and mozzarella.</p>
+                <div class="price-tag"><span class="price">Rs. 1,400</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Smoky Beef BBQ</h2>
+                <p>Double smashed beef patties with caramelized onions and house BBQ sauce.</p>
+                <div class="price-tag"><span class="price">Rs. 850</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="4rh card.jfif"></div>
+            <div class="cards-content">
+                <h2>Hot Wings</h2>
+                <p>8 pieces of breaded wings tossed in our secret Nashville hot oil.</p>
+                <div class="price-tag"><span class="price">Rs. 720</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="5th img.jfif"></div>
+            <div class="cards-content">
+                <h2>Chicken Tenders</h2>
+                <p>Golden fried buttermilk chicken strips served with honey mustard dip.</p>
+                <div class="price-tag"><span class="price">Rs. 580</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Spicy Alfredo</h2>
+                <p>Fettuccine pasta in creamy parmesan sauce with grilled cajun chicken.</p>
+                <div class="price-tag"><span class="price">Rs. 950</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Loaded Animal Fries</h2>
+                <p>Crispy fries smothered in melted cheese, chopped steak, and jalapeños.</p>
+                <div class="price-tag"><span class="price">Rs. 600</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Club Sandwich</h2>
+                <p>Three layers of toasted bread with chicken, egg, cheese, and fresh greens.</p>
+                <div class="price-tag"><span class="price">Rs. 550</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="6th img.jfif"></div>
+            <div class="cards-content">
+                <h2>Firecracker Shrimp</h2>
+                <p>Tempura fried prawns tossed in a spicy, sweet, and creamy mayo sauce.</p>
+                <div class="price-tag"><span class="price">Rs. 1,100</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Truffle Fries</h2>
+                <p>Premium fries drizzled with truffle oil and freshly grated parmesan cheese.</p>
+                <div class="price-tag"><span class="price">Rs. 450</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Lamb Chops</h2>
+                <p>Juicy lamb chops marinated in herbs and flame-grilled to perfection.</p>
+                <div class="price-tag"><span class="price">Rs. 1,800</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Peri Peri Wrap</h2>
+                <p>Spicy peri peri chicken strips with bell peppers wrapped in a soft tortilla.</p>
+                <div class="price-tag"><span class="price">Rs. 480</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Fish & Chips</h2>
+                <p>Crispy batter-fried cod fillet served with chunky chips and tartar sauce.</p>
+                <div class="price-tag"><span class="price">Rs. 980</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1512152272829-e3139592d56f?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Steakhouse Burger</h2>
+                <p>Prime beef patty with mushroom sauce and swiss cheese slices.</p>
+                <div class="price-tag"><span class="price">Rs. 920</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Jalapeno Bites</h2>
+                <p>Deep-fried breaded balls stuffed with cream cheese and spicy jalapenos.</p>
+                <div class="price-tag"><span class="price">Rs. 420</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="7th img.jfif"></div>
+            <div class="cards-content">
+                <h2>Honey Glazed Wings</h2>
+                <p>Sweet and sticky wings coated in a rich honey garlic glaze.</p>
+                <div class="price-tag"><span class="price">Rs. 680</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Arrabbiata Pasta</h2>
+                <p>Spicy tomato-based pasta sauce with black olives and parmesan.</p>
+                <div class="price-tag"><span class="price">Rs. 750</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Breakfast Muffin</h2>
+                <p>Sausage patty, fluffy scrambled eggs, and cheese in a toasted muffin.</p>
+                <div class="price-tag"><span class="price">Rs. 380</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1536510233921-8e5043fce771?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Mushroom Risotto</h2>
+                <p>Slow-cooked arborio rice with wild mushrooms and truffle oil touch.</p>
+                <div class="price-tag"><span class="price">Rs. 1,250</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=800"></div>
+            <div class="cards-content">
+                <h2>Nutella Pancake</h2>
+                <p>Fluffy stack of pancakes drizzled with warm Nutella and strawberries.</p>
+                <div class="price-tag"><span class="price">Rs. 520</span><span class="order-btn">Add to Cart +</span></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-col" data-aos="fade-up">
+            <h2><span>MoNo-Cafe's</span></h2>
+            <p>Authentic taste, premium quality, and a cozy atmosphere. We serve happiness in every plate and every cup.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="menu.html">Our Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+            <h3>Contact Us</h3>
+            <p><i class="fa-solid fa-location-dot" style="margin-right: 10px;"></i> Food Street, Phase 6, Karachi</p>
+            <p><i class="fa-solid fa-phone" style="margin-right: 10px; margin-top: 15px;"></i> +92 300 1234567</p>
+            <p><i class="fa-solid fa-envelope" style="margin-right: 10px; margin-top: 15px;"></i> info@monocafe.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; Powered by AsH Stud!0 (M-Umer) | MoNo-Cafe's | Crafted with <i class="fa-solid fa-heart" style="color: red;"></i> for Food Lovers!</p>
+    </div>
+</footer>
+
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    // --- AOS KO START KARNA ZAROORI HAI ---
+    AOS.init({
+        duration: 800,
+        once: true // Ek baar animation ho jaye toh dobara na ho
+    });
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 1. Hero Title - Sharp & Smooth Reveal
+    gsap.from('#heroTitle', { 
+        opacity: 0, 
+        y: 40, 
+        rotateX: -10, 
+        duration: 1.8, 
+        ease: "expo.out",
+        force3D: true,
+        onComplete: () => {
+            gsap.set('#heroTitle', { clearProps: "transform" });
+        }
+    });
+
+    // 2. Navbar Slide Down
+    gsap.from('nav', {
+        y: -100,
+        duration: 1,
+        ease: "power4.out"
+    });
+
+    // 3. Cards Stagger
+    gsap.utils.toArray('.cards').forEach((card, i) => {
+        gsap.to(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            delay: (i % 3) * 0.1
+        });
+    });
+
+    // 4. Parallax Effect (Images)
+    gsap.utils.toArray('.cards img').forEach((img) => {
+        gsap.to(img, {
+            scrollTrigger: {
+                trigger: img,
+                scrub: 1,
+                start: "top bottom",
+                end: "bottom top"
+            },
+            y: -30,
+            ease: "none"
+        });
+    });
+</script>
+
+</body>
+</html>

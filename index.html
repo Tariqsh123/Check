@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoNo-Cafe's | Premium Dining</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-white: #ffffff;
+            --text-grey: #a0a0a0;
+            --accent-white: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+    nav{
+        height: 70px;
+        width: 100%;
+        background-color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border: 2px solid white;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    nav h1{
+        color: white;
+        padding: 20px;
+        font-family: 'Playfair Display', serif;
+        cursor: context-menu;
+        font-size: 29px;
+    }
+
+    .menu{
+        height: 100%;
+        width: fit-content;
+        align-content: center;
+        gap:10px;
+    }
+
+    .menu a{
+        color: white;
+        padding: 10px 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        transition: all 0.5s;
+        text-decoration: none;
+        padding:8px 15px;
+    }
+
+    .menu a:hover{
+        background-color: white;
+        color: black;
+        border-radius: 10px;
+    }
+
+    .menu p{
+        display: none;
+    }
+
+        .hero-section {
+            height: 100vh;
+            width: 100%;
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('foods.png');
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 90px;
+        }
+
+        .hero-section h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 62px;
+            font-size: clamp(40px, 8vw, 85px);
+            line-height: 1.1;
+            margin-bottom: 30px;
+            font-weight: 700;
+            cursor: context-menu;
+        }
+
+        .btn{
+            padding: 18px 45px;
+            border: 2px solid white;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
+            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            position: relative;
+            background: transparent;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background-color: white;
+            color: black;
+            border-radius: 20%;
+            transform: translateY(-5px);
+        }
+
+        /* --- SIGNATURE ITEMS SECTION --- */
+        .hero-bottom {
+            padding: 120px 8%;
+            text-align: center;
+        }
+
+        .hero-bottom h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 15px;
+            cursor: context-menu;
+        }
+
+        .hero-bottom .sub-text {
+            font-size: 16px;
+            color: var(--text-grey);
+            margin-bottom: 80px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* --- MODERN CARDS --- */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .inner-cards {
+            background: #111; /* Slightly lighter black for depth */
+            border: 1px solid var(--accent-white);
+            border-radius: 0px;
+            overflow: hidden;
+            transition: 0.4s ease-in-out;
+            text-align: left;
+            position: relative;
+        }
+
+        .inner-cards:hover {
+            border-color: white;
+            box-shadow: 1px 1px 5px white;
+            border-radius: 5%;
+            transform: translateY(-10px);
+        }
+
+        .img-box {
+            overflow: hidden;
+            height: 280px;
+        }
+
+        .inner-cards img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(70%);
+            transition: 0.6s transform ease;
+        }
+
+        .inner-cards:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%); /* Color on hover for interaction */
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .inner-cards h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .inner-cards .dscrptn {
+            font-size: 14px;
+            color: var(--text-grey);
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .inner-cards .price {
+            font-size: 20px;
+            font-weight: 600;
+            border-top: 1px solid var(--accent-white);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-footer {
+            background-color: #000;
+            padding: 70px 6% 30px;
+            border-top: 2px solid white;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            cursor: context-menu;
+        }
+
+        .footer-col h2 span {
+            font-family: cursive;
+            -webkit-text-stroke: 1px white;
+            color: transparent;
+        }
+
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            cursor: context-menu;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            width: 50%;
+            height: 2px;
+            background: white;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+
+        .footer-col p {
+            color: #aaa;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #aaa;
+            transition: 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+            padding-left: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: white;
+            transition: 0.4s;
+        }
+
+        .social-icons a:hover {
+            background: white;
+            color: black;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #777;
+        }
+
+/* --- RESPONSIVE --- */
+        @media(max-width:768px){
+            .menu a{
+                display: none;
+            }
+            .menu::after{
+                content: '\f0c9';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+            }
+            .about-title{
+                font-size:34px;
+            }
+            .head-sec h1{
+                font-size:32px;
+                text-align:center;
+            }
+            .head-sec p{
+                text-align:center;
+            }
+            .footer-col{
+                text-align: center;
+            }
+            .footer-col h3::after{
+                left: 25%;
+            }
+            .social-icons{
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>MoNo-Cafe's<span>.</span></h1>
+        <div class="menu">
+            <a href="our story.html">Our Story</a>
+            <a href="Menu.html">Menu</a>
+            <a href="Contact.html">Contact</a>
+            <p><i class="fa-solid fa-bars"></i></p>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-text">
+            <h1>MoNo-Cafe's – Serving<br> Happiness on Every Plate</h1>
+            <a href="menu.html" class="btn">Explore Menu</a>
+        </div>
+    </header>
+
+    <section class="hero-bottom">
+        <h2>Our Signature</h2>
+        <p class="sub-text">Hand-crafted flavors, redefined with elegance.</p>
+
+        <div class="card-container">
+            <div class="inner-cards">
+                <div class="img-box">
+                    <img src="coffee's.png" alt="Coffee's,">
+                </div>
+                <div class="card-content">
+                    <h3>The Grand MoNo Feast</h3>
+                    <p class="dscrptn">An ultimate culinary journey featuring a medley of flame-grilled steaks, artisanal tacos, hand-tossed pizza, and creamy pasta. Perfect for sharing stories and flavors.</p>
+                    <div class="price">
+                        <span>PKR 3,499</span>
+                        <i class="fa-solid fa-arrow-right-long" style="font-size: 16px; opacity: 0.5;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inner-cards">
+                <div class="img-box">
+                    <img src="tender.png" alt="Tenders">
+                </div>
+                <div class="card-content">
+                    <h3>Crispy Tenders</h3>
+                    <p class="dscrptn">Succulent chicken tenders fried to deep golden perfection for a shattering, premium crunch.</p>
+                    <div class="price">
+                        <span>PKR 1049</span>
+                        <i class="fa-solid fa-arrow-right-long" style="font-size: 16px; opacity: 0.5;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inner-cards">
+                <div class="img-box">
+                    <img src="platter.jfif" alt="Steak">
+                </div>
+                <div class="card-content">
+                    <h3>Steak Roll-Ups</h3>
+                    <p class="dscrptn">Grilled steak strips with savory seasoned rice, wrapped in a toasted sesame artisanal crust.</p>
+                    <div class="price">
+                        <span>PKR 1299</span>
+                        <i class="fa-solid fa-arrow-right-long" style="font-size: 16px; opacity: 0.5;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-col" data-aos="fade-up">
+            <h2><span>MoNo-Cafe's</span></h2>
+            <p>Authentic taste, premium quality, and a cozy atmosphere. We serve happiness in every plate and every cup.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="menu.html">Our Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+            <h3>Contact Us</h3>
+            <p><i class="fa-solid fa-location-dot" style="margin-right: 10px;"></i> Food Street, Phase 6, Karachi</p>
+            <p><i class="fa-solid fa-phone" style="margin-right: 10px; margin-top: 15px;"></i> +92 300 1234567</p>
+            <p><i class="fa-solid fa-envelope" style="margin-right: 10px; margin-top: 15px;"></i> info@monocafe.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; Powered by AsH Stud!0 (M-Umer) | MoNo-Cafe's | Crafted with <i class="fa-solid fa-heart" style="color: red;"></i> for Food Lovers!</p>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+</body>
+</html>
